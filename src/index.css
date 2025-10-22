@@ -43,6 +43,11 @@ All colors MUST be HSL.
     --glow-start: 0 100% 50%; /* #FF1E00 */
     --glow-mid: 0 64% 32%; /* #A30000 */
     --glow-end: 0 0% 0%; /* #000000 */
+    
+    /* Bio-neural gradient (amber to crimson) */
+    --bio-glow-start: 30 100% 50%; /* Warm amber */
+    --bio-glow-mid: 15 100% 45%; /* Orange-red */
+    --bio-glow-end: 0 100% 50%; /* Crimson */
   }
 }
 
@@ -78,12 +83,56 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes title-glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 20px hsl(var(--bio-glow-start) / 0.8),
+      0 0 40px hsl(var(--bio-glow-mid) / 0.6),
+      0 0 60px hsl(var(--bio-glow-end) / 0.4),
+      0 0 80px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    text-shadow: 
+      0 0 30px hsl(var(--bio-glow-start) / 1),
+      0 0 60px hsl(var(--bio-glow-mid) / 0.8),
+      0 0 90px hsl(var(--bio-glow-end) / 0.6),
+      0 0 120px hsl(var(--primary) / 0.4);
+  }
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-10px);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-30px) translateX(5px);
+    opacity: 0.7;
+  }
+}
+
 .breathe-glow {
   animation: breathe-glow 4s ease-in-out infinite;
 }
 
 .pulse-border {
   animation: pulse-border 2s ease-in-out infinite;
+}
+
+.title-glow {
+  animation: title-glow 3s ease-in-out infinite;
+}
+
+.particle-float {
+  animation: particle-float 8s ease-in-out infinite;
 }
 
 @layer base {
