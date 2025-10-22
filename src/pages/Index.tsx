@@ -17,6 +17,9 @@ const Index = () => {
     },
   ]);
 
+  // Check if conversation has started (more than just welcome message)
+  const isConversationActive = messages.length > 1;
+
   const handleSend = (content: string) => {
     // Add user message
     const userMessage: Message = { role: "user", content };
@@ -43,7 +46,7 @@ const Index = () => {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col h-full">
-        <ChatHeader />
+        <ChatHeader isCompact={isConversationActive} />
         
         <ScrollArea className="flex-1 px-4">
           <div className="max-w-4xl mx-auto py-8 space-y-6">
