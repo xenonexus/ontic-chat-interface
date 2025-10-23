@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,13 +15,20 @@ interface SearchFormProps {
 }
 
 export const SearchForm = ({ onSearch }: SearchFormProps) => {
+  const navigate = useNavigate();
   const [doi, setDoi] = useState("");
   const [year, setYear] = useState("");
   const [title, setTitle] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const params = new URLSearchParams();
+    if (doi) params.append("doi", doi);
+    if (year) params.append("year", year);
+    if (title) params.append("title", title);
+    
     onSearch({ doi, year, title });
+    navigate(`/results?${params.toString()}`);
   };
 
   return (
